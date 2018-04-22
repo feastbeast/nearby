@@ -19,7 +19,6 @@ class PhotoCarousel extends React.Component {
     });
   }
 
-
   render() {
     const { index, direction } = this.state;
     let carousels = this.props.nearbyRestaurant.photos.map((photoID, index) => {
