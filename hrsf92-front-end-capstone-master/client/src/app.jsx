@@ -10,9 +10,8 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
     this.state = {
-      hardcodeSix: [1,2,3,4,5,6],
-      currentRestaurant: [],
-      nearbyRestaurant: [],
+      currentRestaurant: {},
+      nearbyRestaurants: [],
       dummyPhoto: ['dummy-image.png', 'example-photo-02.jpeg', 'example-photo-03.jpeg', 'example-photo-04.jpeg', 'example-photo-05.jpeg', 'example-photo-06.jpeg']
     }
 	}
@@ -30,7 +29,8 @@ class App extends React.Component {
         console.log('GET Data: ', data)
         this.setState({
           currentRestaurant: data[0],
-          nearbyRestaurants: data[1]
+          nearbyRestaurants: data[1],
+          // nearbyPhotos: data[1].photos
         })
       },
       error: (err) => {
@@ -50,12 +50,12 @@ class App extends React.Component {
     
     let restaurantCards = this.state.nearbyRestaurants.map((num, index) => {
       return (
-        <RestaurantCard nearbyRestaurants={this.state.nearbyRestaurants[index]} dummyPhoto={this.state.dummyPhoto[index]} key={index.toString()} switchRestaurant={this.goToRestaurant.bind(this)} />
+        <RestaurantCard nearbyRestaurant={this.state.nearbyRestaurants[index]} key={index.toString()} switchRestaurant={this._goToRestaurant.bind(this)} />
       )
     })
 		return (
 			<div>
-				<div className="restaurant-header">Restaurants Near {currentRestaurant.name}</div>
+				<div className="restaurant-header">Restaurants Near {this.state.currentRestaurant.name ? this.state.currentRestaurant.name : "none"}</div>
         <div className="restaurant-cards">
 				{restaurantCards}
         </div>

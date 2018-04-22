@@ -12,7 +12,7 @@ class RestaurantDetails extends React.Component {
 
 	render() {
     let priceRange = [];
-    for (var i = 0; i < this.props.nearbyRestaurants.price_level; i++) {
+    for (var i = 0; i < this.props.nearbyRestaurant.price_level; i++) {
       priceRange.push('$');
     }
 
@@ -28,18 +28,18 @@ class RestaurantDetails extends React.Component {
 
 		return (
 			<div className="restaurant-details">
-				<div className="restaurant-details-name">{this.props.nearbyRestaurants.name}</div>
+				<div className="restaurant-details-name">{this.props.nearbyRestaurant.name}</div>
 
         <div className="restaurant-details-info">
-          <span>{this.props.nearbyRestaurants.types}</span><span> · </span><span>{this.props.nearbyRestaurants.neighborhood}</span><span> · </span><span>{dollar}</span>
+          <span>{this.props.nearbyRestaurant.types}</span><span> · </span><span>{this.props.nearbyRestaurant.neighborhood}</span><span> · </span><span>{dollar}</span>
         </div>
 
         <div className="restaurant-details-ratings">
-          <img className="apateez-logo-small" src="apateez-logo-small-red.jpeg" /> <span className="restaurant-details-ratings-zagat-rated">FOOD</span> <span className="restaurant-details-ratings-zagat-rated-value">{this.props.nearbyRestaurants.zagat_rating}</span> 
+          <img className="apateez-logo-small" src="apateez-logo-small-red.jpeg" /> <span className="restaurant-details-ratings-zagat-rated">FOOD</span> <span className="restaurant-details-ratings-zagat-rated-value">{this.props.nearbyRestaurant.zagat_rating}</span> 
           <span className="pipeline">|</span>
-          <img className="google-logo-small" src="google-logo-icon.png" /><span className="restaurant-details-ratings-google-rating">{this.props.nearbyRestaurants.google_rating}</span>
+          <img className="google-logo-small" src="google-logo-icon.png" /><span className="restaurant-details-ratings-google-rating">{this.props.nearbyRestaurant.google_rating}</span>
           <div className="restaurant-details-ratings-stars">
-            <div className="restaurant-details-ratings-stars-top" style={{width: starsPercentage(this.props.nearbyRestaurants.google_rating)}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            <div className="restaurant-details-ratings-stars-top" style={{width: starsPercentage(this.props.nearbyRestaurant.google_rating)}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
             <div className="restaurant-details-ratings-stars-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
           </div>
           <span className="restaurant-details-ratings-comments">({Math.floor(Math.random()*500)})</span>

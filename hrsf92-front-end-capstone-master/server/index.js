@@ -9,8 +9,12 @@ mongoose.connect('mongodb://localhost/apateez-nearby');
 
 
 app.use(bodyParser.json());
-app.use('/', express.static(path.join(__dirname, '../client/dist')));
-app.use('/restaurants/:id', express.static(path.join(__dirname, '../client/dist')));
+app.use('/restaurants/', express.static(path.join(__dirname, '../client/dist')));
+// app.use('/api/restaurants/:id/nearby', express.static(path.join(__dirname, '../client/dist')));
+
+app.get('/restaurants/:id', function(req, res) {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
 
 app.get('/api/restaurants/:id/nearby', function(req, res) {
 	var placeId = req.params.id;

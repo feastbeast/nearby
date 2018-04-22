@@ -10,8 +10,8 @@ class RestaurantCard extends React.Component {
 	render() {
 		return (
 			<div className="restaurant-container" >
-				<PhotoCarousel nearbyRestaurants={this.props.nearbyRestaurants} dummyPhoto={this.props.dummyPhoto}/>
-				<RestaurantDetail nearbyRestaurants={this.props.nearbyRestaurants} />
+				<PhotoCarousel nearbyRestaurant={this.props.nearbyRestaurant} />
+				<RestaurantDetail nearbyRestaurant={this.props.nearbyRestaurant} />
 			</div>
 		)
 	}
