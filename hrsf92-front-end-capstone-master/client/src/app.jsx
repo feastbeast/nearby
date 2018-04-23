@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import RestaurantCard from './components/RestaurantCard.jsx';
 import '../dist/styles.css';
-// import dummyData from '../../../grabData/fullList.json';
 import Footer from './components/Footer.jsx';
 import $ from 'jquery';
 
@@ -11,12 +10,15 @@ class App extends React.Component {
 		super(props);
     this.state = {
       currentRestaurant: {},
-      nearbyRestaurants: [],
-      dummyPhoto: ['dummy-image.png', 'example-photo-02.jpeg', 'example-photo-03.jpeg', 'example-photo-04.jpeg', 'example-photo-05.jpeg', 'example-photo-06.jpeg']
+      nearbyRestaurants: []
     }
 	}
 
   componentDidMount() {
+    this._getData();
+  }
+
+  _getData() {
     console.log('window location.href: ', window.location.href);
 
     var id = window.location.href.split('/')[4];
@@ -30,15 +32,12 @@ class App extends React.Component {
         this.setState({
           currentRestaurant: data[0],
           nearbyRestaurants: data[1],
-          // nearbyPhotos: data[1].photos
         })
       },
       error: (err) => {
         console.log('GET Error: ', err)
       }
     })
-
-    
   }
 
   _goToRestaurant(id) {

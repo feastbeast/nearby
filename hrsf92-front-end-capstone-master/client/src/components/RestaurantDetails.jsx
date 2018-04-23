@@ -28,7 +28,7 @@ class RestaurantDetails extends React.Component {
 
 		return (
 			<div className="restaurant-details">
-				<div className="restaurant-details-name">{this.props.nearbyRestaurant.name}</div>
+				<div className="restaurant-details-name" onClick={() => this.props.switchRestaurant(this.props.nearbyRestaurant.place_id)} >{this.props.nearbyRestaurant.name}</div>
 
         <div className="restaurant-details-info">
           <span>{this.props.nearbyRestaurant.types}</span><span> · </span><span>{this.props.nearbyRestaurant.neighborhood}</span><span> · </span><span>{dollar}</span>

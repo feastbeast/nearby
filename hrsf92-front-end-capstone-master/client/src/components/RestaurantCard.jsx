@@ -11,7 +11,7 @@ class RestaurantCard extends React.Component {
 		return (
 			<div className="restaurant-container" >
 				<PhotoCarousel nearbyRestaurant={this.props.nearbyRestaurant} />
-				<RestaurantDetail nearbyRestaurant={this.props.nearbyRestaurant} />
+				<RestaurantDetail nearbyRestaurant={this.props.nearbyRestaurant} switchRestaurant={this.props.switchRestaurant} />
 			</div>
 		)
 	}
