@@ -52,7 +52,7 @@ class App extends React.Component {
       )
     })
 		return (
-			<div>
+			<div className="nearby-padding">
 				<div className="restaurant-header">Restaurants Near {this.state.currentRestaurant.name ? this.state.currentRestaurant.name : "none"}</div>
         <div className="restaurant-cards">
 				{restaurantCards}

@@ -1,4 +1,4 @@
-body {
+.nearby-padding {
   color: #101820;
   font: 15px/20px 'Source Sans Pro';
   letter-spacing: .013em;
@@ -141,7 +141,7 @@ body {
 
 .apateez-logo-small, .google-logo-small{
   border-radius: 50%;
-  width: 18px;
+  width: 24px;
   padding-left: 2px;
 }
 
