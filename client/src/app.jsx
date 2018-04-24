@@ -25,7 +25,7 @@ class App extends React.Component {
     // console.log('getting recommended restaurants for id: ' + id)
 
     $.ajax({
-      url: `/api/restaurants/${id}/nearby`,
+      url: `http://localhost:3004/api/restaurants/${id}/nearby`,
       method: "GET",
       success: (data) => {
         this.setState({
