@@ -24,7 +24,7 @@ class PhotoCarousel extends React.Component {
     let carousels = this.props.nearbyRestaurant.photos.map((photoID, index) => {
       if (index < 5) {
         return (
-          <Carousel.Item>
+          <Carousel.Item key={index}>
             <img src={'https://s3-us-west-1.amazonaws.com/apateezgallery93/' + photoID +'.png'} />
           </Carousel.Item>
         )

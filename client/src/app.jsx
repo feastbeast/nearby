@@ -19,16 +19,15 @@ class App extends React.Component {
   }
 
   _getData() {
-    console.log('window location.href: ', window.location.href);
+    // console.log('window location.href: ', window.location.href);
 
     var id = window.location.href.split('/')[4];
-    console.log('getting recommended restaurants for id: ' + id)
+    // console.log('getting recommended restaurants for id: ' + id)
 
     $.ajax({
       url: `/api/restaurants/${id}/nearby`,
       method: "GET",
       success: (data) => {
-        console.log('GET Data: ', data)
         this.setState({
           currentRestaurant: data[0],
           nearbyRestaurants: data[1],

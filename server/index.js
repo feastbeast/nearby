@@ -7,8 +7,14 @@ const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/apateez-nearby');
 
-
 app.use(bodyParser.json());
+
+app.use(function(req, res, next) {
+ res.header("Access-Control-Allow-Origin", "*");
+ res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+ next();
+});
+
 app.use('/restaurants/', express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/restaurants/:id', function(req, res) {
@@ -48,4 +54,4 @@ app.get('/api/restaurants/:id/nearby', function(req, res) {
   });
 })
 
-app.listen(3004, function () { console.log('Apateez app listening on port 1234!') });
+app.listen(3004, function () { console.log('Apateez app listening on port 3004!') });

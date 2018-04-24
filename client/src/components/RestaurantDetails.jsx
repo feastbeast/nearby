@@ -22,7 +22,7 @@ class RestaurantDetails extends React.Component {
 
     var starsPercentage = (googleRating) => {
       var percent = googleRating / 5 * 100;
-      console.log('Percent: ', percent + '%')
+      // console.log('Percent: ', percent + '%')
       return percent + '%';
     }
 
@@ -35,9 +35,9 @@ class RestaurantDetails extends React.Component {
         </div>
 
         <div className="restaurant-details-ratings">
-          <img className="apateez-logo-small" src="apateez-logo-small-red.jpeg" /> <span className="restaurant-details-ratings-zagat-rated">FOOD</span> <span className="restaurant-details-ratings-zagat-rated-value">{this.props.nearbyRestaurant.zagat_rating}</span> 
+          <img className="apateez-logo-small" src="https://s3-us-west-1.amazonaws.com/apateezassets/apateez-logo-small-red.jpeg" /> <span className="restaurant-details-ratings-zagat-rated">FOOD</span> <span className="restaurant-details-ratings-zagat-rated-value">{this.props.nearbyRestaurant.zagat_rating}</span> 
           <span className="pipeline">|</span>
-          <img className="google-logo-small" src="google-logo-icon.png" /><span className="restaurant-details-ratings-google-rating">{this.props.nearbyRestaurant.google_rating}</span>
+          <img className="google-logo-small" src="https://s3-us-west-1.amazonaws.com/apateezassets/google-logo-icon.png" /><span className="restaurant-details-ratings-google-rating">{this.props.nearbyRestaurant.google_rating}</span>
           <div className="restaurant-details-ratings-stars">
             <div className="restaurant-details-ratings-stars-top" style={{width: starsPercentage(this.props.nearbyRestaurant.google_rating)}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
             <div className="restaurant-details-ratings-stars-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
