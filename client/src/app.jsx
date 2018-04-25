@@ -10,7 +10,8 @@ class App extends React.Component {
 		super(props);
     this.state = {
       currentRestaurant: {},
-      nearbyRestaurants: []
+      nearbyRestaurants: [],
+      checkID: true
     }
 	}
 
@@ -24,19 +25,27 @@ class App extends React.Component {
     var id = window.location.href.split('/')[4];
     // console.log('getting recommended restaurants for id: ' + id)
 
-    $.ajax({
-      url: `http://localhost:3004/api/restaurants/${id}/nearby`,
-      method: "GET",
-      success: (data) => {
-        this.setState({
-          currentRestaurant: data[0],
-          nearbyRestaurants: data[1],
-        })
-      },
-      error: (err) => {
-        console.log('GET Error: ', err)
-      }
-    })
+    //error handling if id is included in URL
+    if (window.location.href.split('/')[4] !== undefined) {
+      $.ajax({
+        url: `http://localhost:3004/api/restaurants/${id}/nearby`,
+        method: "GET",
+        success: (data) => {
+          this.setState({
+            currentRestaurant: data[0],
+            nearbyRestaurants: data[1],
+          })
+        },
+        error: (err) => {
+          console.log('GET Error: ', err)
+        }
+      })
+    } else {
+      this.setState({
+        checkID: false
+      })
+    }
+    
   }
 
   _goToRestaurant(id) {
@@ -51,6 +60,8 @@ class App extends React.Component {
         <RestaurantCard nearbyRestaurant={this.state.nearbyRestaurants[index]} key={index.toString()} switchRestaurant={this._goToRestaurant.bind(this)} />
       )
     })
+
+
 		return (
 			<div className="nearby-padding">
 				<div className="restaurant-header">Restaurants Near {this.state.currentRestaurant.name ? this.state.currentRestaurant.name : "none"}</div>
