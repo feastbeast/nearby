@@ -2,7 +2,20 @@ var AllData = require('./195-Zagat-AllData.json')
 var db = require('./db/mongodb.js');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/apateez-nearby');
+var mongoUrlDocker = 'mongodb://database/apateez-nearby';
+var mongoUrl = 'mongodb://localhost/apateez-nearby';
+
+mongoose.connect(mongoUrl);
+// mongoose.connect(mongoUrlDocker);
+
+mongoose.connection.on('connected', function() {
+  console.log('Mongoose connection open')
+});
+
+mongoose.connection.on('error',function (err) {
+  console.log('Mongoose default connection error: ' + err);
+  mongoose.connect(mongoUrlDocker)
+});
 
 var seedDb = (array) => {
   let counter = 0
