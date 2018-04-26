@@ -28,7 +28,7 @@ class App extends React.Component {
     //error handling if id is included in URL
     if (window.location.href.split('/')[4] !== undefined) {
       $.ajax({
-        url: `http://localhost:3004/api/restaurants/${id}/nearby`,
+        url: `/api/restaurants/${id}/nearby`,
         method: "GET",
         success: (data) => {
           this.setState({
