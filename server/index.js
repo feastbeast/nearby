@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
-const db = require('../db/mongodb.js');
+const db = require('../db/pgdb.js');
 const mongoose = require('mongoose');
 
 var mongoUrlDocker = 'mongodb://database/apateez-nearby';
@@ -45,9 +45,9 @@ app.get('/api/restaurants/:id/nearby', function(req, res) {
       res.status(500);
       console.log(err);
     } else {
-      console.log("restaurant info: ", data);
+      // console.log("restaurant info: ", data);
       var nearbyArr = data[0].nearby;
-      console.log('Nearby Arr: ', nearbyArr);
+      // console.log('Nearby Arr: ', nearbyArr);
       results.push(data[0]);
 
       db.findMany(nearbyArr, (err, data)=> {
@@ -59,7 +59,6 @@ app.get('/api/restaurants/:id/nearby', function(req, res) {
           results.push(data)
           // console.log("number of recommended: " + data.length);
           res.status(200);
-          console.log('THIS IS RESULTS: ', results);
           // console.log('Results Length: ', results.length);
           res.send(results);
         }
