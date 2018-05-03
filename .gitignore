@@ -24,3 +24,12 @@ coverage
 build/
 
 package-lock.json
+
+# Seed
+seed/original
+seed/review
+seed/example.json
+seed/example2.csv
+seed/imageUrls.json
+seed/mongoData.json
+seed/postgresData.csv

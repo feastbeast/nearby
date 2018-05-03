@@ -35,8 +35,8 @@ app.get('/restaurants/:id', function(req, res) {
 });
 
 app.get('/api/restaurants/:id/nearby', function(req, res) {
-	var placeId = req.params.id;
-  console.log("GET " + req.url); 
+  var placeId = req.params.id;
+  // console.log("GET " + req.url); 
 
   // find recommended restaurants based on id
   var results = [];
@@ -55,11 +55,12 @@ app.get('/api/restaurants/:id/nearby', function(req, res) {
           res.status(500);
           console.log(err);
         } else{
-          console.log("recommended restaurants:", data);
+          // console.log("recommended restaurants:", data);
           results.push(data)
-          console.log("number of recommended: " + data.length);
+          // console.log("number of recommended: " + data.length);
           res.status(200);
-          console.log('Results Length: ', results.length);
+          console.log('THIS IS RESULTS: ', results);
+          // console.log('Results Length: ', results.length);
           res.send(results);
         }
       });

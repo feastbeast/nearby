@@ -4,7 +4,7 @@ import RestaurantCard from './components/RestaurantCard.jsx';
 import '../dist/styles.css';
 import Footer from './components/Footer.jsx';
 import $ from 'jquery';
-
+import axios from 'axios';
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -27,19 +27,17 @@ class App extends React.Component {
 
     //error handling if id is included in URL
     if (window.location.href.split('/')[4] !== undefined) {
-      $.ajax({
-        url: `http://13.56.114.101:3004/api/restaurants/${id}/nearby`,
-        method: "GET",
-        success: (data) => {
+      axios.get(`/api/restaurants/${id}/nearby`) 
+        .then(({data}) => {
+          console.log(data);
           this.setState({
             currentRestaurant: data[0],
             nearbyRestaurants: data[1],
           })
-        },
-        error: (err) => {
+        })
+        .catch((err) => {
           console.log('GET Error: ', err)
-        }
-      })
+        })
     } else {
       this.setState({
         checkID: false
