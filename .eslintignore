@@ -1,0 +1,11 @@
+**/webpack.config.js
+**/bundle.js
+**/node_modules
+**/dist
+**/coverage
+**/__tests__
+**/seed/data
+**/seed/example
+**/seed/original
+**/seed/review
+**/TestSetup.js

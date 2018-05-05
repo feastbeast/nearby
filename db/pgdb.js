@@ -1,33 +1,33 @@
-var promise = require('bluebird');
+const promise = require('bluebird');
 
-var options = {
-  promiseLib: promise
+const options = {
+  promiseLib: promise,
 };
 
-var pgp = require('pg-promise')(options);
-// var connectionString = 'postgres://postgres:postgres@database:5432/fec'; //for docker
-var connectionString = 'postgres://postgres:postgres@localhost:5432/apateez_nearby'; //for local
-var db = pgp(connectionString);
+const pgp = require('pg-promise')(options);
 
-var findOne = function(id, callback) {
+const connectionString = 'postgres://postgres:postgres@localhost:5432/apateez_nearby'; // for local
+const db = pgp(connectionString);
+
+const findOne = function findRestaurantWithId(id, callback) {
   db.any('SELECT * FROM restaurants WHERE place_id = $1', id)
-  .then((data) => {
-    callback(null, data)
-  })
-  .catch((err) => {
-    callback(err);
-  });
-}
+    .then((data) => {
+      callback(null, data);
+    })
+    .catch((err) => {
+      callback(err);
+    });
+};
 
-var findMany = function(ids, callback) {
-  db.any("SELECT * FROM restaurants WHERE place_id IN ($1:list)", [ids])
-  .then((data) => {
-    callback(null, data)
-  })
-  .catch((err) => {
-    callback(err);
-  });
-}
+const findMany = function findRestaurantsWithIds(ids, callback) {
+  db.any('SELECT * FROM restaurants WHERE place_id IN ($1:list)', [ids])
+    .then((data) => {
+      callback(null, data);
+    })
+    .catch((err) => {
+      callback(err);
+    });
+};
 
 // var getRoomReviews = function(req, res, next) {
 //   db.any('SELECT * FROM restaurants WHERE room_id = $1', req.params.id)
@@ -42,6 +42,6 @@ var findMany = function(ids, callback) {
 
 
 module.exports = {
-  findOne: findOne,
-  findMany: findMany
-}
+  findOne,
+  findMany,
+};

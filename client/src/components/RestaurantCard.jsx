@@ -1,6 +1,6 @@
 import React from 'react';
-import PhotoCarousel from './PhotoCarousel.jsx';
-import RestaurantDetail from './RestaurantDetails.jsx';
+import PhotoCarousel from './PhotoCarousel';
+import RestaurantDetail from './RestaurantDetails';
 
 class RestaurantCard extends React.Component {
 	constructor(props) {

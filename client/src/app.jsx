@@ -1,75 +1,71 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RestaurantCard from './components/RestaurantCard.jsx';
-import '../dist/styles.css';
-import Footer from './components/Footer.jsx';
-import $ from 'jquery';
 import axios from 'axios';
+import RestaurantCard from './components/RestaurantCard';
+import Footer from './components/Footer';
+import '../dist/styles.css';
+
 class App extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
     this.state = {
       currentRestaurant: {},
       nearbyRestaurants: [],
-      checkID: true
-    }
-	}
-
-  componentDidMount() {
-    this._getData();
+    };
   }
 
-  _getData() {
-    // console.log('window location.href: ', window.location.href);
+  componentDidMount() {
+    this.getData();
+  }
 
-    var id = window.location.href.split('/')[4];
-    // console.log('getting recommended restaurants for id: ' + id)
-
-    //error handling if id is included in URL
+  getData() {
+    const id = window.location.href.split('/')[4];
+    // error handling if id is included in URL
     if (window.location.href.split('/')[4] !== undefined) {
-      axios.get(`/api/restaurants/${id}/nearby`) 
-        .then(({data}) => {
-          console.log(data);
+      axios.get(`/api/restaurants/${id}/nearby`)
+        .then(({ data }) => {
+          // console.log(data);
           this.setState({
             currentRestaurant: data[0],
             nearbyRestaurants: data[1],
-          })
+          });
         })
         .catch((err) => {
-          console.log('GET Error: ', err)
-        })
+          console.log('GET Error: ', err);
+        });
     } else {
       this.setState({
-        checkID: false
-      })
+        checkID: false,
+      });
     }
-    
   }
 
-  _goToRestaurant(id) {
-    console.log('go to restaurant ' + id)
-    location.href = '/restaurants/' + id;
+  goToRestaurant(id) {
+    console.log(`go to restaurant ${id}`);
+    location.href = `/restaurants/${id}`;
   }
 
-	render() {
-    
-    let restaurantCards = this.state.nearbyRestaurants.map((num, index) => {
-      return (
-        <RestaurantCard nearbyRestaurant={this.state.nearbyRestaurants[index]} key={index.toString()} switchRestaurant={this._goToRestaurant.bind(this)} />
-      )
-    })
+  render() {
+    const switchRestaurant = this.goToRestaurant.bind(this);
+    const restaurantCards = this.state.nearbyRestaurants.map((num, index) => (
+      <RestaurantCard
+        nearbyRestaurant={this.state.nearbyRestaurants[index]}
+        key={index.toString()}
+        switchRestaurant={switchRestaurant}
+      />
+    ));
 
 
-		return (
-			<div className="nearby-padding">
-				<div className="restaurant-header">Restaurants Near {this.state.currentRestaurant.name ? this.state.currentRestaurant.name : "none"}</div>
+    return (
+      <div className="nearby-padding">
+        <div className="restaurant-header">Restaurants Near {this.state.currentRestaurant.name ? this.state.currentRestaurant.name : 'none'}</div>
         <div className="restaurant-cards">
-				{restaurantCards}
+          {restaurantCards}
         </div>
         <Footer />
-			</div>
-		)
-	}
+      </div>
+    );
+  }
 }
 
 ReactDOM.render(<App />, document.getElementById('nearby-app'));
