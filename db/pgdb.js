@@ -29,18 +29,6 @@ const findMany = function findRestaurantsWithIds(ids, callback) {
     });
 };
 
-// var getRoomReviews = function(req, res, next) {
-//   db.any('SELECT * FROM restaurants WHERE room_id = $1', req.params.id)
-//   .then((data) => {
-//     res.status(200)
-//     .json(data);
-//   })
-//   .catch((err) => {
-//     return next(err);
-//   });
-// }
-
-
 module.exports = {
   findOne,
   findMany,
