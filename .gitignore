@@ -24,3 +24,9 @@ coverage
 build/
 
 package-lock.json
+
+# Seed
+seed/original
+seed/review
+seed/data
+seed/example
