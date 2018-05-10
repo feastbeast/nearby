@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import RestaurantCard from './components/RestaurantCard';
-import Footer from './components/Footer';
+import RestaurantCard from './components/RestaurantCard.jsx';
+import Footer from './components/Footer.jsx';
 import '../dist/styles.css';
+// require('newrelic');
 
 class App extends React.Component {
   constructor(props) {

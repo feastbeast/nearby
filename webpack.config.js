@@ -1,8 +1,14 @@
 var path = require('path');
 var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, '/client/dist');
+var webpack = require('webpack');
 
 module.exports = {
+  plugins: [
+    new webpack.DefinePlugin({
+      'IMAGE_URL': JSON.stringify('https://s3-us-west-1.amazonaws.com/apateez'),
+    })
+  ],
   entry: `${SRC_DIR}/app.jsx`,
   output: {
     filename: 'bundle.js',

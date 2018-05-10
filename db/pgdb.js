@@ -1,7 +1,7 @@
-const promise = require('bluebird');
+const Promise = require('bluebird');
 
 const options = {
-  promiseLib: promise,
+  promiseLib: Promise,
 };
 
 const pgp = require('pg-promise')(options);
