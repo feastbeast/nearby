@@ -27,7 +27,7 @@ const types = [
 
 const getRestaurantJson = function getJsonObject(counter, numEntries) {
   const start = Math.abs((counter % array.length) - 5);
-  var photoArr = array.slice(start, start + 5);
+  const photoArr = array.slice(start, start + 5);
   // 6 random restaurants for near by suggestion of each restaurant;
   const nearbyArr = [];
   for (let i = 0; i < 6; i += 1) {
@@ -52,8 +52,8 @@ const getRestaurantJson = function getJsonObject(counter, numEntries) {
 
 const getRestaurantCsv = function getRowOfData(counter, numEntries) {
   const start = Math.abs((counter % array.length) - 5);
-  var photoArr = array.slice(start, start + 5);
-  
+  const photoArr = array.slice(start, start + 5);
+
   // 6 random restaurants for near by suggestion of each restaurant;
   const nearbyArr = [];
   for (let i = 0; i < 6; i += 1) {

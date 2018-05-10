@@ -1,12 +1,14 @@
 config:
   target: 'http://127.0.0.1:3004'
+  processor: './realistic.js'
   phases:
     - duration: 60
-      arrivalRate: 2000
+      arrivalRate: 1000
   defaults:
     headers:
       x-my-service-auth: '987401838271002188298567'
 scenarios:
   - flow:
+    - function: "generateRandomId"
     - get:
-        url: "/api/restaurants/" + %RANDOM% + "/nearby"
+        url: "/api/restaurants/{{ randomId }}/nearby"

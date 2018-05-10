@@ -9,4 +9,4 @@ config:
 scenarios:
   - flow:
     - get:
-        url: "/api/restaurants/" + Math.floor(Math.random() * 10000000) + "/nearby"
+        url: "/api/restaurants/1/nearby"
