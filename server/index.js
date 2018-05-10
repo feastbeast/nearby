@@ -246,46 +246,6 @@ app.get('/api/restaurants/:id/nearby', (req, res) => {
       });
     }
   });
-  // redisGetAsync(placeId)
-  // .then((data) => { //single
-  //   // console.log(data);
-  //   if (data === null) {
-  //     console.log(placeId, ' not found in cache');
-  //     return db.findOneAsync(placeId);
-  //   } else {
-  //     console.log(placeId, ' is found in cache');
-  //     data = JSON.parse(data);
-  //     throw('success', data);
-  //   }
-  // })
-  // .then((oneData) => { //nearby
-  //   console.log('reached here');
-  //   const nearbyArr = oneData[0].nearby;
-  //   results[0] = oneData[0];
-  //   return db.findManyAsync(nearbyArr);
-  // })
-  // .then((nearbyData) => {
-  //   results[1] = nearbyData;
-  //   res.status(200).send(results);
-  // })
-  // .catch((error) => {
-  //   console.log('ERROR: ', msg);
-  //   res.status(500).send(msg);
-  // });
-  // db.findOneAsync(placeId)
-  // .then((data) => {
-  //   const nearbyArr = data[0].nearby;
-  //   results[0] = data[0];
-  //   return db.findManyAsync(nearbyArr);
-  // })
-  // .then((nearbyData) => {
-  //   results[1] = nearbyData;
-  //   res.status(200).send(results);
-  // })
-  // .catch((err) => {
-  //   console.log(err);
-  //   res.status(500);
-  // });
   
 });
 
