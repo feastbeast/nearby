@@ -25,7 +25,7 @@ class PhotoCarousel extends React.Component {
       if (index < 5) {
         return (
           <Carousel.Item key={index}>
-            <img src={photoID} />
+            <img src={`${IMAGE_URL}/${photoID}.png`} />
           </Carousel.Item>
         )
       }

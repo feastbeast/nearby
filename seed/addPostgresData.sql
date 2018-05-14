@@ -21,6 +21,4 @@ CREATE TABLE restaurants
   nearby TEXT[] NOT NULL
 );
 
-COPY restaurants(place_id, name, google_rating, zagat_rating, photos, 
-neighborhood, price_level, types, nearby) 
-FROM '/Users/Belinda/Hack-Reactor/SDC-nearby/seed/postgresData.csv' DELIMITER ',' CSV HEADER;
+\COPY restaurants FROM './seed/data/data.csv' DELIMITER ',' CSV;

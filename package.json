@@ -10,7 +10,10 @@
   "scripts": {
     "start": "node ./server/index.js",
     "ser": "nodemon ./server/index.js",
-    "seed": "node ./seed.js",
+    "gen:csv": "node seed/generateData.js csv",
+    "gen:json": "node seed/generateData.js json",
+    "seed:mongo": "mongoimport --jsonArray -d apateez-nearby -c restaurants --file seed/data/data.json --numInsertionWorkers 4",
+    "seed:pg": "psql -D apateez-nearby -f seed/addPostgresData.sql",
     "build": "webpack -d --watch",
     "build:prod": "webpack -p",
     "test": "jest",
@@ -30,9 +33,9 @@
     "babel-preset-react": "^6.24.1",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "css-loader": "^0.28.11",
     "express": "^4.16.3",
-    "faker": "^4.1.0",
     "jquery": "^3.3.1",
     "mongoose": "^5.0.15",
     "path": "^0.12.7",
@@ -40,7 +43,10 @@
     "react": "^16.3.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.3.1",
-    "style-loader": "^0.20.3"
+    "redis": "^2.8.0",
+    "style-loader": "^0.20.3",
+    "faker": "^4.1.0",
+    "newrelic": "^4.1.0"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
@@ -52,7 +58,6 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-sql": "^1.1.1",
-    "faker": "^4.1.0",
     "jest": "^22.4.3",
     "react-test-renderer": "^16.3.2",
     "webpack": "^3.11.0",

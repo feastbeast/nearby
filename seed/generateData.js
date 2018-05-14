@@ -1,6 +1,6 @@
 const fs = require('fs');
 const faker = require('faker');
-// const array = require('./imageUrls.json');
+const array = require('./data/imageUrls.json');
 
 /*
  * Constants for loading data
@@ -16,18 +16,18 @@ const types = [
   'Point of interest',
   'Establishment',
 ];
-const photoArr = [
-  'https://loremflickr.com/320/320/food',
-  'https://loremflickr.com/320/320/restaurant',
-  'https://loremflickr.com/320/320/dining',
-  'https://loremflickr.com/320/320/dessert',
-  'https://loremflickr.com/320/320/lunch',
-  'https://loremflickr.com/320/320/dinner',
-];
+// const photoArr = [
+//   'https://loremflickr.com/320/320/food',
+//   'https://loremflickr.com/320/320/restaurant',
+//   'https://loremflickr.com/320/320/dining',
+//   'https://loremflickr.com/320/320/dessert',
+//   'https://loremflickr.com/320/320/lunch',
+//   'https://loremflickr.com/320/320/dinner',
+// ];
 
 const getRestaurantJson = function getJsonObject(counter, numEntries) {
-  // const start = Math.abs((counter % array.length) - 5);
-  // var photoArr = array.slice(start, start + 5);
+  const start = Math.abs((counter % array.length) - 5);
+  const photoArr = array.slice(start, start + 5);
   // 6 random restaurants for near by suggestion of each restaurant;
   const nearbyArr = [];
   for (let i = 0; i < 6; i += 1) {
@@ -51,6 +51,9 @@ const getRestaurantJson = function getJsonObject(counter, numEntries) {
 };
 
 const getRestaurantCsv = function getRowOfData(counter, numEntries) {
+  const start = Math.abs((counter % array.length) - 5);
+  const photoArr = array.slice(start, start + 5);
+
   // 6 random restaurants for near by suggestion of each restaurant;
   const nearbyArr = [];
   for (let i = 0; i < 6; i += 1) {
@@ -80,11 +83,11 @@ function configArgs(processArgs) {
   params[1] = processArgs[1] || 10;
   if (processArgs[0] === 'csv') {
     params[0] = 'csv';
-    params[2] = processArgs[2] || 'data';
+    params[2] = processArgs[2] || 'seed/data/data';
     params[3] = getRestaurantCsv;
   } else {
     params[0] = 'json';
-    params[2] = processArgs[2] || 'data';
+    params[2] = processArgs[2] || 'seed/data/data';
     params[3] = getRestaurantJson;
   }
   return params;
@@ -94,7 +97,6 @@ function writeFile(fileType, numEntries, fileName, getChunk) {
   let counter = 0;
   const stream = fs.createWriteStream(`${fileName}.${fileType}`, { encoding: 'utf8' });
   if (fileType === 'json') stream.write('[\n');
-  if (fileType === 'csv') stream.write('place_id,name,google_rating,zagat_rating,photos,neighborhood,price_level,types,nearby\n');
 
   const addItems = function addObjectToWriteStream() {
     let ok = true;
