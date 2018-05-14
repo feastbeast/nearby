@@ -32,5 +32,5 @@ seed/data
 seed/example
 
 # Compiled Webpack files
-dist/lib/nearby-server.js
-dist/lib/nearby.js
+client/dist/nearby-server.js
+client/dist/nearby.js
