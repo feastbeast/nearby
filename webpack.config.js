@@ -45,16 +45,7 @@ const server = {
   },
 };
 
-const preSSR = {
-  entry: `${SRC_DIR}/preSSR.js`,
-  output: {
-    filename: 'preSSR.js',
-    path: DIST_DIR,
-  }
-};
-
 module.exports = [
   Object.assign({}, common, server),
-  Object.assign({}, common, client),
-  Object.assign({}, common, preSSR)
+  Object.assign({}, common, client)
 ];

@@ -7,7 +7,6 @@ import Footer from './components/Footer.jsx';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    // console.log('APP PROPS: ', props);
     this.state = {
       currentRestaurant: {},
       nearbyRestaurants: [],
@@ -69,6 +68,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-// ReactDOM.hydrate(<App />, document.getElementById('nearby-app'));
-// module.exports = App;
