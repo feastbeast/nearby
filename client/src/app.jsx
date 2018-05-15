@@ -3,10 +3,8 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import RestaurantCard from './components/RestaurantCard.jsx';
 import Footer from './components/Footer.jsx';
-import '../dist/styles.css';
-// require('newrelic');
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,14 +14,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getData();
+    if (typeof(window) !== 'undefined') {
+      this.getData();
+    }
   }
 
   getData() {
-    const id = window.location.href.split('/')[4];
+    const id = this.props.restaurantId;
     // error handling if id is included in URL
-    if (window.location.href.split('/')[4] !== undefined) {
-      axios.get(`/api/restaurants/${id}/nearby`)
+    if (id !== undefined) {
+      axios.get(`http://127.0.0.1:3004/api/restaurants/${id}/nearby`)
         .then(({ data }) => {
           // console.log(data);
           this.setState({
@@ -68,5 +68,3 @@ class App extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('nearby-app'));
