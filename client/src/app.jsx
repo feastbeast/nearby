@@ -14,9 +14,8 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    if (typeof(window) !== 'undefined') {
-      this.getData();
-    }
+    // console.log('COMPONENT DID MOUNT', this.props.restaurantId);
+    this.getData();
   }
 
   getData() {
