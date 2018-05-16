@@ -1,5 +1,5 @@
 import React from 'react';
-import faker from 'faker';
+const sentence = 'Laudantium ducimus beatae fugiat asperiores corporis necessitatibus debitis aut atque.';
 
 class RestaurantDetails extends React.Component {
 	constructor(props) {
@@ -42,11 +42,11 @@ class RestaurantDetails extends React.Component {
             <div className="restaurant-details-ratings-stars-top" style={{width: starsPercentage(this.props.nearbyRestaurant.google_rating)}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
             <div className="restaurant-details-ratings-stars-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
           </div>
-          <span className="restaurant-details-ratings-comments">({Math.floor(Math.random()*500)})</span>
+          <span className="restaurant-details-ratings-comments">250</span>
         </div>
 
         <div className="restaurant-details-description">
-          {faker.lorem.sentence()}
+          {sentence}
         </div>        
 
 			</div>

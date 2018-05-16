@@ -11,7 +11,7 @@ const db = Promise.promisifyAll(require('../db/pgdb.js'));
 // const redis = Promise.promisifyAll(require('redis'));
 const redis = require('redis');
 
-const client = redis.createClient();
+const client = redis.createClient({host: '52.53.190.7', port: 6379});
 
 client.on('error', (err) => {
   console.log('Error: ', err);
@@ -65,6 +65,5 @@ const getCache = (req, res) => {
 };
 
 app.get('/api/restaurants/:id/nearby', getCache);
-
 
 app.listen(3004, () => console.log('Apateez app listening on port 3004!'));

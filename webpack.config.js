@@ -7,6 +7,7 @@ const common = {
   plugins: [
     new webpack.DefinePlugin({
       'IMAGE_URL': JSON.stringify('https://s3-us-west-1.amazonaws.com/apateez'),
+      'BASE_URL': JSON.stringify('http://13.57.191.101:3004')
     })
   ],
   module : {

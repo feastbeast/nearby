@@ -22,7 +22,7 @@ export default class App extends React.Component {
     const id = this.props.restaurantId;
     // error handling if id is included in URL
     if (id !== undefined) {
-      axios.get(`http://127.0.0.1:3004/api/restaurants/${id}/nearby`)
+      axios.get(`${BASE_URL}/api/restaurants/${id}/nearby`)
         .then(({ data }) => {
           // console.log(data);
           this.setState({
