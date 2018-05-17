@@ -3,14 +3,14 @@ version: '3'
 services:
     nearby:
       build: .
-      links: 
-        - cache
-      depends_on:
-        - cache
+      # links: 
+      #   - cache
+      # depends_on:
+      #   - cache
       ports:
         - 3004:3004
 
-    cache:
-      image: redis:latest
-      ports:
-        - 6379:6379
+    # cache:
+    #   image: redis:latest
+    #   ports:
+    #     - 6379:6379
