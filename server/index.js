@@ -1,4 +1,4 @@
-const newrelic = require('newrelic');
+// const newrelic = require('newrelic');
 
 const express = require('express');
 
@@ -11,7 +11,7 @@ const db = Promise.promisifyAll(require('../db/pgdb.js'));
 // const redis = Promise.promisifyAll(require('redis'));
 const redis = require('redis');
 
-const client = redis.createClient({"host": '52.53.190.7', "port": 6379, "pass": "password"});
+const client = redis.createClient({"host": '13.56.210.26', "port": 6379, "pass": "password"});
 
 client.on('error', (err) => {
   console.log('Error: ', err);
@@ -50,7 +50,8 @@ const getRestaurantNearby = (req, res) => {
     .then((nearbyData) => {
       // console.log('DB 2');
       results[1] = nearbyData;
-      client.set(placeId, JSON.stringify(results), 'EX', 6000);
+      // console.log('redis store data: ', JSON.stringify(results));
+      client.setex(placeId, 3600, JSON.stringify(results));
       res.status(200).send(results);
     })
     .catch((err) => {
@@ -77,4 +78,8 @@ const getCache = (req, res) => {
 
 app.get('/api/restaurants/:id/nearby', getCache);
 
-app.listen(3004, () => console.log('Apateez app listening on port 3004!'));
+app.get('/loaderio-28097ab73558e7ac2f49962ccbb60d66/', (req, res) => {
+  res.send('loaderio-28097ab73558e7ac2f49962ccbb60d66');
+})
+
+app.listen(3004, () => console.log('5.17 Apateez app listening on port 3004!'));
