@@ -14,16 +14,15 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    if (typeof(window) !== 'undefined') {
-      this.getData();
-    }
+    // console.log('COMPONENT DID MOUNT', this.props.restaurantId);
+    this.getData();
   }
 
   getData() {
     const id = this.props.restaurantId;
     // error handling if id is included in URL
     if (id !== undefined) {
-      axios.get(`http://127.0.0.1:3004/api/restaurants/${id}/nearby`)
+      axios.get(`${BASE_URL}/api/restaurants/${id}/nearby`)
         .then(({ data }) => {
           // console.log(data);
           this.setState({

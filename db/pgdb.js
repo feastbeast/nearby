@@ -10,6 +10,7 @@ const connectionString = 'postgres://postgres:postgres@localhost:5432/apateez_ne
 const db = pgp(connectionString);
 
 const findOne = function findRestaurantWithId(id, callback) {
+  console.log('POSTGRES: finding ONE');
   db.any('SELECT * FROM restaurants WHERE place_id = $1', id)
     .then((data) => {
       callback(null, data);
@@ -20,6 +21,7 @@ const findOne = function findRestaurantWithId(id, callback) {
 };
 
 const findMany = function findRestaurantsWithIds(ids, callback) {
+  console.log('POSTGRES: finding MANY');
   db.any('SELECT * FROM restaurants WHERE place_id IN ($1:list)', [ids])
     .then((data) => {
       callback(null, data);

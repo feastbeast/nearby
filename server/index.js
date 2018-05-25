@@ -1,4 +1,4 @@
-const newrelic = require('newrelic');
+// const newrelic = require('newrelic');
 
 const express = require('express');
 
@@ -11,10 +11,14 @@ const db = Promise.promisifyAll(require('../db/pgdb.js'));
 // const redis = Promise.promisifyAll(require('redis'));
 const redis = require('redis');
 
-const client = redis.createClient();
+const client = redis.createClient({"host": '13.56.210.26', "port": 6379, "pass": "password"});
 
 client.on('error', (err) => {
   console.log('Error: ', err);
+});
+
+client.on('connect', () => {
+  console.log('Redis connected!');
 });
 
 // client.setAsync('1', JSON.stringify(x)).then(() => redis.print);
@@ -32,33 +36,41 @@ app.get('/restaurants/:id', (req, res) => {
 
 
 const getRestaurantNearby = (req, res) => {
+  // console.log('DB 0');
   const placeId = req.params.id;
   const results = {};
   db.findOneAsync(placeId)
     .then((data) => {
+      // console.log('DB 1');
       if (!data[0]) return new Promise((resolve, reject) => reject(new Error('Data with id not found')));
       const nearbyArr = data[0].nearby;
       results[0] = data[0];
       return db.findManyAsync(nearbyArr);
     })
     .then((nearbyData) => {
+      // console.log('DB 2');
       results[1] = nearbyData;
-      client.set(placeId, JSON.stringify(results), 'EX', 6000);
+      // console.log('redis store data: ', JSON.stringify(results));
+      client.setex(placeId, 3600, JSON.stringify(results));
       res.status(200).send(results);
     })
     .catch((err) => {
-      console.log(err);
+      console.log('POSTGRES ERROR: ', err);
       res.status(400).end();
     });
 };
 
 const getCache = (req, res) => {
+  // console.log('HELLO 1');
   const placeId = req.params.id;
   client.get(placeId, (err, data) => {
     if (err) res.status(500).send();
+    // console.log('HELLO 2');
     if (data) {
-      res.status(200).send(JSON.parse(data));
+      // console.log('HELLO 4');
+      res.status(200).send(data);
     } else {
+      // console.log('HELLO 3');
       getRestaurantNearby(req, res);
     }
   });
@@ -66,5 +78,8 @@ const getCache = (req, res) => {
 
 app.get('/api/restaurants/:id/nearby', getCache);
 
+app.get('/loaderio-28097ab73558e7ac2f49962ccbb60d66/', (req, res) => {
+  res.send('loaderio-28097ab73558e7ac2f49962ccbb60d66');
+})
 
-app.listen(3004, () => console.log('Apateez app listening on port 3004!'));
+app.listen(3004, () => console.log('5.17 Apateez app listening on port 3004!'));

@@ -7,6 +7,7 @@ const common = {
   plugins: [
     new webpack.DefinePlugin({
       'IMAGE_URL': JSON.stringify('https://s3-us-west-1.amazonaws.com/apateez'),
+      'BASE_URL': JSON.stringify('http://nearby-loadbalancer-1522111090.us-west-1.elb.amazonaws.com:3004')
     })
   ],
   module : {

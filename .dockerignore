@@ -1,0 +1,5 @@
+node_modules
+client/nearby-server.js
+client/nearby.js
+seed
+coverage

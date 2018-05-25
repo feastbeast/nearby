@@ -34,3 +34,6 @@ seed/example
 # Compiled Webpack files
 client/dist/nearby-server.js
 client/dist/nearby.js
+
+# New Relic
+newrelic.js

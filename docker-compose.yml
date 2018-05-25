@@ -3,10 +3,14 @@ version: '3'
 services:
     nearby:
       build: .
-      depends_on:
-        - 'database'
+      # links: 
+      #   - cache
+      # depends_on:
+      #   - cache
       ports:
-        - '3004:3004'
+        - 3004:3004
 
-    database:
-      image: mongo:latest
+    # cache:
+    #   image: redis:latest
+    #   ports:
+    #     - 6379:6379
