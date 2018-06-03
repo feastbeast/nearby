@@ -14,7 +14,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('COMPONENT DID MOUNT', this.props.restaurantId);
     this.getData();
   }
 
@@ -24,7 +23,6 @@ export default class App extends React.Component {
     if (id !== undefined) {
       axios.get(`${BASE_URL}/api/restaurants/${id}/nearby`)
         .then(({ data }) => {
-          // console.log(data);
           this.setState({
             currentRestaurant: data[0],
             nearbyRestaurants: data[1],
@@ -54,7 +52,6 @@ export default class App extends React.Component {
         switchRestaurant={switchRestaurant}
       />
     ));
-
 
     return (
       <div className="nearby-padding">
