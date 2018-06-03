@@ -16,14 +16,6 @@ const types = [
   'Point of interest',
   'Establishment',
 ];
-// const photoArr = [
-//   'https://loremflickr.com/320/320/food',
-//   'https://loremflickr.com/320/320/restaurant',
-//   'https://loremflickr.com/320/320/dining',
-//   'https://loremflickr.com/320/320/dessert',
-//   'https://loremflickr.com/320/320/lunch',
-//   'https://loremflickr.com/320/320/dinner',
-// ];
 
 const getRestaurantJson = function getJsonObject(counter, numEntries) {
   const start = Math.abs((counter % array.length) - 5);
@@ -105,7 +97,6 @@ function writeFile(fileType, numEntries, fileName, getChunk) {
       const item = getChunk(counter, numEntries);
       if (counter === numEntries - 1) {
         stream.write(item, () => {
-          // console.log('Stream complete.');
           if (fileType === 'json') {
             stream.end(']');
           } else {
